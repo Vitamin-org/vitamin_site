@@ -4,3 +4,4 @@
 Галиев Камиль Радикович KaRGaliev@stud.kpfu.ru  
 Чухина Анастасия Валерьевна - AVChukhina@stud.kpfu.ru  
 Тяпкина Регина Геннадьевна rtapkina@gmail.com  
+Махсотова Милана Жандосовна -milanamahsotova@gmail.com
