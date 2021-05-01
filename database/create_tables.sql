@@ -26,7 +26,8 @@ CREATE TABLE  IF NOT EXISTS recipe_ingredient(
 	recipe_id BIGINT REFERENCES recipe(id),
 	ingredient_id BIGINT REFERENCES ingredient(id),
 	ingredient_amount_in_grams DECIMAL(1000, 2),
-	CONSTRAINT unique_pair UNIQUE(recipe_id, ingredient_id)
+	CONSTRAINT unique_pair UNIQUE(recipe_id, ingredient_id),
+    CONSTRAINT recipe_ingredient_pkey PRIMARY KEY (recipe_id, ingredient_id)
 );
 
 CREATE INDEX IF NOT EXISTS recipe_idx ON recipe(id);
