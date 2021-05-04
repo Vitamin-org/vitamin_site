@@ -81,7 +81,7 @@ class Ingredient
         $vitamins = [];
         foreach ($arr as $el)
         {
-            $split = preg_split("/: /",$el);
+            $split = preg_split("/\s?:\s?/",$el);
             $vitamins[$split[0]] = (float) $split[1];
         }
         $this->vitamins = $vitamins;
