@@ -2,19 +2,20 @@
 
 namespace App\Entity;
 
+use App\Repository\IngredientRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Ingredient
  *
  * @ORM\Table(name="ingredient", uniqueConstraints={@ORM\UniqueConstraint(name="ingredient_title_key", columns={"title"})}, indexes={@ORM\Index(name="ingredient_id", columns={"id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=IngredientRepository::class)
  */
 class Ingredient
 {
     /**
-     * @var int
-     *
      * @ORM\Column(name="id", type="bigint", nullable=false, options={"comment"="unique id of ingredient in table"})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
@@ -23,32 +24,78 @@ class Ingredient
     private $id;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="title", type="text", nullable=true, options={"comment"="name of the ingredient"})
+     * @ORM\Column(name="title", type="text", nullable=false, options={"comment"="name of the ingredient"})
      */
     private $title;
 
     /**
-     * @var json|null
-     *
-     * @ORM\Column(name="vitamins", type="json", nullable=true, options={"comment"="information about vitamin content in ingredients, represented in JSON format: {""Vitamins name"":""amount in milligrams""}"})
+     *  @ORM\Column(name="vitamins", type="json", nullable=true, options={"comment"="information about vitamin content in ingredients, represented in JSON format: {""Vitamins name"":""amount in milligrams""}"})
      */
-    private $vitamins;
+    private $vitamins = [];
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Recipe", mappedBy="ingredient")
+     * @ORM\ManyToMany(targetEntity=Recipe::class, mappedBy="ingredients")
      */
-    private $recipe;
+    private $recipes;
 
-    /**
-     * Constructor
-     */
     public function __construct()
     {
-        $this->recipe = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->recipes = new ArrayCollection();
     }
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getVitamins(): ?array
+    {
+        return $this->vitamins;
+    }
+
+    public function setVitamins(array $vitamins): self
+    {
+        $this->vitamins = $vitamins;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Recipe[]
+     */
+    public function getRecipes(): Collection
+    {
+        return $this->recipes;
+    }
+
+    public function addRecipe(Recipe $recipe): self
+    {
+        if (!$this->recipes->contains($recipe)) {
+            $this->recipes[] = $recipe;
+            $recipe->addIngredient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecipe(Recipe $recipe): self
+    {
+        if ($this->recipes->removeElement($recipe)) {
+            $recipe->removeIngredient($this);
+        }
+
+        return $this;
+    }
 }
