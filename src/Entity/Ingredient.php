@@ -43,6 +43,11 @@ class Ingredient
         $this->recipes = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->title;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -62,13 +67,24 @@ class Ingredient
 
     public function getVitamins(): ?array
     {
-        return $this->vitamins;
+        $arr = [];
+        foreach (array_keys($this->vitamins) as $key)
+            {
+                $el = $key.": ".$this->vitamins[$key];
+                array_push($arr, $el);
+            }
+        return $arr;
     }
 
-    public function setVitamins(array $vitamins): self
+    public function setVitamins(array $arr): self
     {
+        $vitamins = [];
+        foreach ($arr as $el)
+        {
+            $split = preg_split("/\s?:\s?/",$el);
+            $vitamins[$split[0]] = (float) $split[1];
+        }
         $this->vitamins = $vitamins;
-
         return $this;
     }
 

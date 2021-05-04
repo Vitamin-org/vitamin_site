@@ -34,21 +34,18 @@ class Recipe
     private $description;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Ingredient1::class, inversedBy="recipies")
-     * @ORM\JoinTable(name="recipe_ingredient",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="recipe_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")
-     *   }
-     * )
+     * @ORM\ManyToMany(targetEntity=Ingredient::class, inversedBy="recipies")
      */
     private $ingredients;
 
     public function __construct()
     {
         $this->ingredients = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->title;
     }
 
 
