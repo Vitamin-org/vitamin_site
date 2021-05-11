@@ -1,0 +1,45 @@
+body{
+    background-color: #0c73fe;
+    font-display: white;
+}
+
+#search{
+    display: block;
+    
+    padding-top: 15px;
+    padding-bottom: 20px;
+    padding-right: 150px;
+    padding-left: 150px ;
+}
+#recommend{
+    display: none;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    width: max-content;
+    height: max-content; 
+}
+button{
+    width: max-content;
+    height:min-content;
+    margin-right: 10px;
+    margin-bottom: 10px;    
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+}
+
+
+.myTagVit{
+    background-color: rgb(255, 195, 65); 
+    border-radius: 10px;
+    padding: 10px;
+    width: max-content; margin-right: 10px;
+    margin-bottom: 10px;
+}
+.myTagProd{
+    background-color: rgb(230, 221, 221); 
+    border-radius: 10px;
+    padding: 10px;
+    width: max-content; margin-right: 10px;
+    margin-bottom: 10px;
+}
