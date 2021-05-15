@@ -1,6 +1,9 @@
 body{
-    background-color: #0c73fe;
+    background-color: #e5f4f9;
     font-display: white;
+}
+header{
+    background-color: #8dc6d9 ;
 }
 
 #search{
@@ -18,28 +21,55 @@ body{
     width: max-content;
     height: max-content; 
 }
-button{
-    width: max-content;
-    height:min-content;
-    margin-right: 10px;
-    margin-bottom: 10px;    
-    padding-top: 5px;
-    padding-bottom: 5px;
+
+#recipes{
+    margin: 100px;
+}
+
+.tagify-vit{
+    background-color: #5ba5c2; 
+    border-radius: 3px;
     padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    width: min-content;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #000;
+
 }
-
-
-.myTagVit{
-    background-color: rgb(255, 195, 65); 
-    border-radius: 10px;
-    padding: 10px;
-    width: max-content; margin-right: 10px;
+.recipe-card{
     margin-bottom: 10px;
 }
-.myTagProd{
-    background-color: rgb(230, 221, 221); 
-    border-radius: 10px;
-    padding: 10px;
-    width: max-content; margin-right: 10px;
-    margin-bottom: 10px;
+.card-text-wrapper{
+    overflow: hidden;
+    padding: 5px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+   -webkit-line-clamp: 3;
+   -webkit-box-orient: vertical;  
+}
+.recipe-title a{
+    color: #000;
+    text-decoration: none;
+}
+
+.recipe-description a{
+    color: #000;   
+}
+
+.recipe-description-decoration-none li a {
+    color: #000;
+    text-decoration: none;   
+}
+
+.nav-buttons button{
+    background-color: #5ba5c2;
+    width: 50px;
+}
+.btn-search{
+    background-color: #5ba5c2;
+    
 }

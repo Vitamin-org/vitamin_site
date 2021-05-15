@@ -28,38 +28,39 @@
     
 
 
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(38, 131, 230);" >
-        <div class="container-fluid " >
-            <a class="navbar-brand" href="C:\Users\Аделя\Desktop\vitamin_site\design\user.html">
-                <img src="css\alphabet-150785_1280.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
-                <font color = "white">Vitamins</font>
-            </a>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
     
-                  <li class="nav-item dropdown" >
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <font color = "white">меню</font> 
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: rgb(255, 255, 255);">
-                      <li><a class="dropdown-item" href="user.html" >главная страница</a></li>
-                      <li><a class="dropdown-item" href="allrecipes.html"  >каталог рецептов</a></li>
-                    </ul>
-                  </li>
-                </ul>
-            </div>
-          
-          
-        </div>
-    </nav>
     
 
     <header>
-        <div class="px-3 my-5 text-center">
-            <h1 class="display-7 fw-bold" style="color: white; font-style: oblique;">Винегрет</h1>            
-        </div>    
+        <nav class="navbar navbar-expand-lg navbar-light"  >
+            <div class="container-fluid " >
+                <a class="navbar-brand" href="C:\Users\Аделя\Desktop\vitamin_site\design\user.html">
+                    <img src="css\alphabet-150785_1280.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                    Vitamins
+                </a>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+        
+                      <li class="nav-item dropdown" >
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            меню 
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
+                          <li><a class="dropdown-item" href="user.html" >главная страница</a></li>
+                          <li><a class="dropdown-item" href="allrecipes.html"  >каталог рецептов</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                </div>
+              
+              
+            </div>
+        </nav>
+           
     </header>
-    
+    <div class="px-3 my-5 text-center">
+        <h1 class="display-7 fw-bold">Винегрет</h1>            
+    </div>
     <div class="container-fluid" >
         <div class="card-desk row " style=" padding-top: 50px;
         padding-bottom: 20px; margin-left: 10%; margin-right: 10%; -ms-layout-grid: fixed;">
@@ -69,12 +70,25 @@
                 <div class="card-header" style="font-weight: bolder;">
                     Ингридиенты
                 </div>
-                <ul class="list-group list-group-flush"  >
-                    <li class="list-group-item">картофель</li>
-                    <li class="list-group-item">свекла</li>
-                    <li class="list-group-item">морковь</li>
-                    <li class="list-group-item">огурцы</li>
-                    <li class="list-group-item">лук</li>
+                <ul class="list-group list-group-flush recipe-description-decoration-none"  >
+                    <li class="list-group-item">
+                        <a  href="#">картофель</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#">свекла</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#">морковь</a>
+
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#">огурцы</a>
+
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#">лук</a>
+
+                    </li>
                 </ul>
               </div>
             </div>
@@ -85,16 +99,8 @@
                     </div>
                     <div class="card-group" >
                         <div class="container-fluid" style="  display: flex; flex-wrap: wrap-reverse; margin-right: 5px; padding-top: 10px; margin-right: 10px; margin-left: 10px; width: max-content;">
-                            <div class="myTagVit"  >витамин А</div>
-                                <div  class="myTagVit"   >витамин E</div>
-                                <div  class="myTagVit"   >калий</div>
-                                <div  class="myTagVit"   >кобальт</div>
-                                <div  class="myTagVit"  >хром</div>
-                                <div class="myTagVit"  >витамин А</div>
-                                <div  class="myTagVit"   >витамин E</div>
-                                <div  class="myTagVit"   >калий</div>
-                                <div  class="myTagVit"   >кобальт</div>
-                                <div  class="myTagVit"  >хром</div>
+                            <a class = "tagify-vit" href = "#">А</a> <a class = "tagify-vit"  href = "#">Е</a> <a class = "tagify-vit" href = "#">D</a> <a class = "tagify-vit" href = "#">B</a> <a class = "tagify-vit" href = "#">C</a>
+                               
                         </div>
                         
                         
