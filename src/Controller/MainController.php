@@ -4,13 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Recipe;
 use App\Repository\RecipeRepository;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
 {
-
     /**
      * @Route("/", name="homepage")
      */
@@ -22,9 +23,14 @@ class MainController extends AbstractController
     /**
      * @Route("/recipe", name="recipe_list")
      */
-    public function getRecipeList(): Response
+    public function getRecipeList(Request $request): Response
     {
-        return $this->render('main/recipe_list.html.twig');
+        $request->query->get('include_vitamins', []);
+        $request->query->get('include_ingredients', []);
+        $request->query->get('exclude_vitamins', []);
+        $request->query->get('exclude_ingredients', []);
+        return $this->render( 'main/recipe_list.html.twig', [
+                                   'recipes'=> [ ['id' => 56, ] ] ] );
     }
 
     /**

@@ -2,7 +2,9 @@
 
 {% block title %}Список рецептов{% endblock %}
 {% block body %}
-    <li><code>Вы можете увидеть рецепт здесь: <a href="{{ '/recipe/{id}'}}">подобранный для вас рецепт!</a></code></li>
+    {% for recipe in recipes %}
+        <li>
+            <code>Вы можете увидеть рецепт здесь: <a href="{{ path('one_recipe', {id: recipe.id})}}">подобранный для вас рецепт!</a></code>
+        </li>
+    {% endfor %}
 {% endblock %}
-
-

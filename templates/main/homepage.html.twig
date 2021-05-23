@@ -34,7 +34,7 @@
 {% endblock %}
 
 {% block body %}
-    <form action="/recipe" method="get">
+    <form action={{ path('recipe_list')}} method="get">
         <label for="include_vitamins">Включить витамины:</label>
         <input type="text" name="include_vitamins"><br><br>
         <label for="include_ingredients">Включить ингредиенты:</label>
