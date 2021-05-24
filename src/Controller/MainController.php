@@ -2,9 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Recipe;
-use App\Repository\RecipeRepository;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,8 +26,13 @@ class MainController extends AbstractController
         $request->query->get('include_ingredients', []);
         $request->query->get('exclude_vitamins', []);
         $request->query->get('exclude_ingredients', []);
-        return $this->render( 'main/recipe_list.html.twig', [
-                                   'recipes'=> [ ['id' => 56, ] ] ] );
+        return $this->render('main/recipe_list.html.twig', [
+            'recipes' => [
+                [
+                    'id' => 56,
+                ]
+            ]
+        ]);
     }
 
     /**
