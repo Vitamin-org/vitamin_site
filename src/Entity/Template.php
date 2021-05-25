@@ -27,9 +27,9 @@ class Template
     private $title;
 
     /**
-     * @ORM\Column(name="filters", type="json", nullable=true, options={"comment"="filters that define this template, represented in JSON format"})
+     * @ORM\Column(name="filters", type="text", nullable=true, options={"comment"="filters that define this template, represented in JSON format"})
      */
-    private $filters = [];
+    private $filters;
 
     public function getId(): ?int
     {
@@ -48,12 +48,12 @@ class Template
         return $this;
     }
 
-    public function getFilters(): ?array
+    public function getFilters(): ?string
     {
         return $this->filters;
     }
 
-    public function setFilters(array $filters): self
+    public function setFilters(string $filters): self
     {
         $this->filters = $filters;
 
