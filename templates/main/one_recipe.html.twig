@@ -1,6 +1,80 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Один рецепт{% endblock %}
-{% block body %}
-    <li><code>Вернитесь к списку рецептов: <a href="{{ '/recipe'}}">список рецептов.</a></code></li>
+{% block container %}
+
+    <div class="px-3 my-5 text-center">
+        <h1 class="display-7 fw-bold">{{ name }}</h1>
+    </div>
+
+    <div class="container-fluid" >
+        <div class="card-desk row " style=" padding-top: 50px; padding-bottom: 20px; margin-left: 10%; margin-right: 10%;">
+            <div class="col-sm-6 ">
+                <div class="card">
+                    <div class="card-header" style="font-weight: bolder;">
+                        Ингредиенты
+                    </div>
+                    <ul class="list-group list-group-flush recipe-description-decoration-none"  >
+                        {% for ingredient in ingredients %}
+                            <li class="list-group-item">
+                                <a href=\"#\">{{ ingredient }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <!--
+                    <ul class="list-group list-group-flush recipe-description-decoration-none"  >
+                        <li class="list-group-item">
+                            <a  href="#">картофель</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">свекла</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">морковь</a>
+
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">огурцы</a>
+
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">лук</a>
+
+                        </li>
+                    </ul>
+                    -->
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card c" >
+                    <div class="card-header" style="font-weight: bolder; -webkit-box-flex: 1;">
+                        Витамины
+                    </div>
+                    <div class="card-group" >
+                        <div class="container-fluid" style="  display: flex; flex-wrap: wrap-reverse; margin-right: 5px; padding-top: 10px; margin-right: 10px; margin-left: 10px; width: max-content;">
+                            {% for vitamin in vitamins %}
+                                <a class ="tagify-vit" href="#">{{ vitamin }}</a>
+                            {% endfor %}
+                        </div>
+                        <!--
+                        <div class="container-fluid" style="  display: flex; flex-wrap: wrap-reverse; margin-right: 5px; padding-top: 10px; margin-right: 10px; margin-left: 10px; width: max-content;">
+                            <a class = "tagify-vit" href = "#">А</a> <a class = "tagify-vit"  href = "#">Е</a> <a class = "tagify-vit" href = "#">D</a> <a class = "tagify-vit" href = "#">B</a> <a class = "tagify-vit" href = "#">C</a>
+
+                        </div>
+                        -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class= "row" style="margin-left: 11%; margin-right: 11%; margin-bottom: 100px;">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">
+                        {{ description }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
 {% endblock %}
