@@ -1,6 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Один рецепт{% endblock %}
-{% block body %}
-    <li><code>Вернитесь к списку рецептов: <a href="{{ path('recipe_list') }}">список рецептов.</a></code></li>
+{% block container %}
+
+    <div class="px-3 my-5 text-center">
+        <h1 class="display-7 fw-bold">{{ recipe.getTitle() }}</h1>
+    </div>
+
+    <div class="container-fluid" >
+        <div class="card-desk row " style=" padding-top: 50px; padding-bottom: 20px; margin-left: 10%; margin-right: 10%;">
+            <div class="col-sm-6 ">
+                <div class="card">
+                    <div class="card-header" style="font-weight: bolder;">
+                        Ингредиенты
+                    </div>
+                    <ul class="list-group list-group-flush recipe-description-decoration-none"  >
+                        {% for ingredient in recipe.getIngredients() %}
+                            <li class="list-group-item">
+                                <a href=\"#\">{{ ingredient }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card c" >
+                    <div class="card-header" style="font-weight: bolder; -webkit-box-flex: 1;">
+                        Витамины
+                    </div>
+                    <div class="card-group" >
+                        <div class="container-fluid" style="  display: flex; flex-wrap: wrap-reverse; margin-right: 5px; padding-top: 10px; margin-right: 10px; margin-left: 10px; width: max-content;">
+                            {% for vitamin in recipe.getVitamins() %}
+                                <a class ="tagify-vit" href="#">{{ vitamin }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class= "row" style="margin-left: 11%; margin-right: 11%; margin-bottom: 100px;">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">
+                        {{ recipe.getDescription() }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
 {% endblock %}

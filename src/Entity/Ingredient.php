@@ -24,7 +24,7 @@ class Ingredient
     private $id;
 
     /**
-     * @ORM\Column(name="title", type="text", nullable=false, options={"comment"="name of the ingredient"})
+     * @ORM\Column(name="title", type="string", length=255, nullable=false, options={"comment"="name of the ingredient"})
      */
     private $title;
 

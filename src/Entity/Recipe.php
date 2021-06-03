@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\RecipeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use App\Entity\Ingredient;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -24,7 +25,7 @@ class Recipe
     private $id;
 
     /**
-     * @ORM\Column(name="title", type="text", nullable=false, options={"comment"="title of the recipe"})
+     * @ORM\Column(name="title", type="string", length=255, nullable=false, options={"comment"="title of the recipe"})
      */
     private $title;
 
@@ -100,5 +101,18 @@ class Recipe
         $this->ingredients->removeElement($ingredient);
 
         return $this;
+    }
+
+    public function getVitamins(): ?array
+    {
+        $vitamins = array();
+        foreach ($this->getIngredients() as $ingredient) {
+            foreach($ingredient->getVitamins() as $vitamin) {
+                if (!in_array($vitamin, $vitamins)) {
+                    array_push($vitamins, $vitamin);
+                }
+            }
+        }
+        return $vitamins;
     }
 }

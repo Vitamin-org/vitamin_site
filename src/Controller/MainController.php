@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Ingredient;
+use App\Entity\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -14,32 +15,24 @@ class MainController extends AbstractController
      */
     public function homepage(): Response
     {
-        return $this->render("main/homepage.html.twig");
-    }
+        $ingredients = $this->getDoctrine()
+                    ->getRepository(Ingredient::class)
+                    ->findAll();
 
-    /**
-     * @Route("/recipe", name="recipe_list")
-     */
-    public function getRecipeList(Request $request): Response
-    {
-        $request->query->get('include_vitamins', []);
-        $request->query->get('include_ingredients', []);
-        $request->query->get('exclude_vitamins', []);
-        $request->query->get('exclude_ingredients', []);
-        return $this->render('main/recipe_list.html.twig', [
-            'recipes' => [
-                [
-                    'id' => 56,
-                ]
-            ]
-        ]);
-    }
+        $vitamins = $this->getDoctrine()
+                    ->getRepository(Ingredient::class)
+                    ->findAllVitamins();
 
-    /**
-     * @Route("/recipe/{id}", name="one_recipe")
-     */
-    public function getOneRecipe(): Response
-    {
-        return $this->render('main/one_recipe.html.twig');
+        $templates = $this->getDoctrine()
+                    ->getRepository(Template::class)
+                    ->findAll();
+
+
+        return $this->render("main/homepage.html.twig", [
+            "title" => "Главная страница",
+            "ingredients" => $ingredients,
+            "vitamins" => $vitamins,
+            "templates" => $templates,
+            ]);
     }
 }

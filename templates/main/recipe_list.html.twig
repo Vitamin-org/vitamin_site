@@ -1,10 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Список рецептов{% endblock %}
-{% block body %}
-    {% for recipe in recipes %}
-        <li>
-            <code>Вы можете увидеть рецепт здесь: <a href="{{ path('one_recipe', {id: recipe.id})}}">подобранный для вас рецепт!</a></code>
-        </li>
-    {% endfor %}
+{% block container %}
+    <div class="px-3 my-5 text-center">
+        <h1 class="display-7 fw-bold">Каталог рецептов</h1>
+    </div>
+
+    <div id="recipes" >
+        {% for recipe in recipes %}
+            <div class="card recipe-card">
+                <div class="card-header recipe-title">
+                    <h5><a href="{{ path('one_recipe', {id: recipe.id})}}">{{ recipe.getTitle() }}</a></h5>
+                </div>
+
+                <div class="card-body">
+                    <p class="card-text">
+                    <div class="card-text-wrapper">
+                        {{ recipe.getDescription() }}
+                    </div>
+                    </p>
+                    <div class="recipe-description">
+                        <p>
+                            Ингредиенты:
+                            {% for ingredient in recipe.getIngredients() %}
+                                <a href = "#">{{ ingredient }}</a>
+                            {% endfor %}
+                        </p>
+                        <p class="vitamin-view">
+                            Витамины:
+                            {% for vitamin in recipe.getVitamins() %}
+                            <a class = "tagify-vit" href = "#">{{ vitamin }}</a>
+                            {% endfor %}
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
