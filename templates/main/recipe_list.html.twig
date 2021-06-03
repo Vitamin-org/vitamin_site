@@ -9,7 +9,7 @@
         {% for recipe in recipes %}
             <div class="card recipe-card">
                 <div class="card-header recipe-title">
-                    <h5><a href="/recipe/{{ recipe.getId() }}">{{ recipe.getTitle() }}</a></h5>
+                    <h5><a href="{{ path('one_recipe', {id: recipe.id})}}">{{ recipe.getTitle() }}</a></h5>
                 </div>
 
                 <div class="card-body">

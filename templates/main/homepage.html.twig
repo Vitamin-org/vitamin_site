@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block container %}
-    <form action="/recipe" method="get">
+    <form action={{ path('recipe_list')}} method="get">
         <div class="container-fluid">
             <div class="px-3 py-3 my-5 text-center">
                 <h1 class="display-7 fw-bold">Поиск рецептов</h1>
@@ -38,11 +38,7 @@
                             dropdown: {
                                 enabled: 0
                             },
-                            whitelist:[{% for vitamin in vitamins %}
-                                {% autoescape false%}
-                                    {{ "\"" ~ vitamin ~ "\"," }}
-                                {% endautoescape %}
-                                {% endfor %}]
+                            whitelist:{{ vitamins|json_encode|raw }}
                         }
                         var tagify = new Tagify(input, settings);
 
@@ -93,11 +89,7 @@
                             dropdown: {
                                 enabled: 0
                             },
-                            whitelist:[{% for vitamin in vitamins %}
-                                {% autoescape false%}
-                                {{ "\"" ~ vitamin ~ "\"," }}
-                                {% endautoescape %}
-                                {% endfor %}]
+                            whitelist:{{ vitamins|json_encode|raw }}
                         }
                         var tagify = new Tagify(input, settings);
 
@@ -142,7 +134,7 @@
         <div class="container-fluid" id= "recommend" >
             <nav class="navbar navbar-light" >
                 <div class="container-fluid">
-                    <form action="/template" method="get" class="d-flex" >
+                    <form action={{ path('template') }} method="get" class="d-flex" >
                         <input class="form-control me-2" input type="text" name="template" id="searchTemp" type="search" >
                         <input class="btn btn-primary btn-lg btn-search" type="submit" value="Поиск" class="button">
                     </form>
@@ -156,12 +148,12 @@
                     dropdown: {
                         enabled: 0
                     },
-                    whitelist:[{% for template in templates %}
+                    whitelist: [{% for template in templates %}
                         {% autoescape false%}
                         {{ "\"" ~ template.getTitle() ~ "\"," }}
                         {% endautoescape %}
                         {% endfor %}]
-                }
+                };
                 var tagify = new Tagify(input, settings);
             </script>
         </div>

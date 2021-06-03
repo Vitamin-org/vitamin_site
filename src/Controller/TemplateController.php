@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TemplateController extends AbstractController
 {
     /**
-     * @Route("/template/{id}", name="template_tagged")
+     * @Route("/template/{id}", name="template_link")
      */
     public function getOneTemplate(int $id): Response
     {
@@ -39,12 +39,13 @@ class TemplateController extends AbstractController
 
         return $this->render('main/recipe_list.html.twig', [
             'title' => 'Найденные рецепты',
-            'recipes' => $recipes
+            'recipes' => $recipes,
+            'template' => $template
         ]);
     }
 
     /**
-     * @Route("/template/", name="template_searched")
+     * @Route("/template/", name="template")
      */
     public function getTemplates(Request $request): Response
     {
@@ -72,7 +73,8 @@ class TemplateController extends AbstractController
 
         return $this->render('main/recipe_list.html.twig', [
             'title' => 'Найденные рецепты',
-            'recipes' => $recipes
+            'recipes' => $recipes,
+            'template' => $template
         ]);
     }
 }
