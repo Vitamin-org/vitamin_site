@@ -27,13 +27,12 @@ class MainController extends AbstractController
      */
     public function getRecipeList(Request $request): Response
     {
-        $include_vitamins = preg_split ( '/[^\p{Cyrillic}0-9]+/u' , $request->get('include_vitamins'),-1 , PREG_SPLIT_NO_EMPTY );
-        $include_ingredients = preg_split ( '/[^\p{Cyrillic}0-9]+/u' , $request->get('include_ingredients'), -1 , PREG_SPLIT_NO_EMPTY );
-        $exclude_vitamins = preg_split ( '/[^\p{Cyrillic}0-9]+/u' , $request->get('exclude_vitamins'), -1 , PREG_SPLIT_NO_EMPTY );
-        $exclude_ingredients = preg_split ( '/[^\p{Cyrillic}0-9]+/u' , $request->get('exclude_ingredients'), -1 , PREG_SPLIT_NO_EMPTY);
+        $include_vitamins = $this->getParameters($request->get('include_vitamins'));
+        $include_ingredients = $this->getParameters($request->get('include_ingredients'));
+        $exclude_vitamins = $this->getParameters($request->get('exclude_vitamins'));
+        $exclude_ingredients = $this->getParameters($request->get('exclude_ingredients'));
 
-
-        $recipies = $arrayOfRecipes = $this->getDoctrine()
+        $recipes = $this->getDoctrine()
             ->getRepository(Recipe::class)
             ->findAllByFilters(
                 $include_vitamins,
@@ -41,8 +40,30 @@ class MainController extends AbstractController
                 $exclude_vitamins,
                 $exclude_ingredients
             );
-        return new Response($recipies[0]->getTitle());
-        //return $this->render('main/recipe_list.html.twig');
+
+//        $recipe = $this->getDoctrine()
+//            ->getRepository(Recipe::class)
+//            ->find(2);
+
+
+
+        return $this->render('main/recipe_list.html.twig', [
+            'title' => 'Найденные рецепты',
+            'recipes' => array($recipes)
+        ]);
+    }
+
+    private function getParameters(? string $line): array
+    {
+        $ar = array();
+        if ($line == null) return $ar;
+
+        $result = preg_split( '/([",\[\]\:{}]+)/u', $line,-1 , PREG_SPLIT_NO_EMPTY );
+        foreach ($result as $el)
+        {
+            if ($el != "value") array_push($ar, $el);
+        }
+        return $ar;
     }
 
     /**
@@ -62,10 +83,7 @@ class MainController extends AbstractController
 
         return $this->render('main/one_recipe.html.twig', [
             'title' => $recipe->getTitle(),
-            'name' => $recipe->getTitle(),
-            'description' => $recipe->getDescription(),
-            'ingredients' => $recipe->getIngredients(),
-            'vitamins' => $recipe->getVitamins(),
+            'recipe' => $recipe,
         ]);
     }
 }

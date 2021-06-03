@@ -22,14 +22,8 @@ class RecipeRepository extends ServiceEntityRepository
     private function getRightStringRepresentation(array $array): string
     {
         $string = "{";
-        foreach ($array as &$value) {
-            $string .= "\"" . $value . "\", ";
-        }
-        $string_length = strlen($string);
-
-        $string = substr($string, 0, $string_length - 2);
-        $string .= "}";
-
+        $string.= implode(',', $array);
+        $string.= "}";
         return $string;
 
     }
@@ -79,7 +73,7 @@ WHERE EXISTS(
 
         $stmt = $conn->prepare($sql);
         $stmt->executeQuery(['includeIngredients' => $this->getRightStringRepresentation($includeIngredients),
-            'includeVitamins' => $this->getRightStringRepresentation("$includeVitamins"),
+            'includeVitamins' => $this->getRightStringRepresentation($includeVitamins),
             'excludeIngredients' => $this->getRightStringRepresentation($excludeIngredients),
             'excludeVitamins' => $this->getRightStringRepresentation($excludeVitamins)]);
 

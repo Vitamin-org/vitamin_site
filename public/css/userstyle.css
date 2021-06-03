@@ -63,6 +63,10 @@ header{
     text-decoration: none;   
 }
 
+.vitamin-view{
+    line-height: 2;
+}
+
 .nav-buttons button{
     background-color: #5ba5c2;
     width: 50px;
