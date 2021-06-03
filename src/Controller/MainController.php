@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Ingredient;
 use App\Entity\Recipe;
 use App\Repository\RecipeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,8 +18,19 @@ class MainController extends AbstractController
      */
     public function homepage(): Response
     {
+        $ingredients = $this->getDoctrine()
+                    ->getRepository(Ingredient::class)
+                    ->findAll();
+
+         $vitamins = $this->getDoctrine()
+                    ->getRepository(Ingredient::class)
+                    ->findAllVitamins();
+
+
         return $this->render("main/homepage.html.twig", [
-            "title" => "Главная страница"
+            "title" => "Главная страница",
+            "ingredients" => $ingredients,
+            "vitamins" => $vitamins,
             ]);
     }
 
@@ -35,10 +47,10 @@ class MainController extends AbstractController
         $recipes = $this->getDoctrine()
             ->getRepository(Recipe::class)
             ->findAllByFilters(
-                $include_vitamins,
                 $include_ingredients,
-                $exclude_vitamins,
-                $exclude_ingredients
+                $include_vitamins,
+                $exclude_ingredients,
+                $exclude_vitamins
             );
 
 //        $recipe = $this->getDoctrine()
@@ -49,7 +61,7 @@ class MainController extends AbstractController
 
         return $this->render('main/recipe_list.html.twig', [
             'title' => 'Найденные рецепты',
-            'recipes' => array($recipes)
+            'recipes' => $recipes
         ]);
     }
 

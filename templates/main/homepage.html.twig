@@ -38,7 +38,11 @@
                             dropdown: {
                                 enabled: 0
                             },
-                            whitelist:["магний","кальций","витамин Е","калий"]
+                            whitelist:[{% for vitamin in vitamins %}
+                                {% autoescape false%}
+                                    {{ "\"" ~ vitamin ~ "\"," }}
+                                {% endautoescape %}
+                                {% endfor %}]
                         }
                         var tagify = new Tagify(input, settings);
 
@@ -62,7 +66,11 @@
                             dropdown: {
                                 enabled: 0
                             },
-                            whitelist:["апельсин","яблоко","картофель","редис"]
+                            whitelist:[{% for ingredient in ingredients %}
+                                {% autoescape false%}
+                                {{ "\"" ~ ingredient ~ "\"," }}
+                                {% endautoescape %}
+                                {% endfor %}]
                         }
                         var tagify = new Tagify(input, settings);
 
@@ -85,7 +93,11 @@
                             dropdown: {
                                 enabled: 0
                             },
-                            whitelist:["магний","кальций","витамин Е","калий"]
+                            whitelist:[{% for vitamin in vitamins %}
+                                {% autoescape false%}
+                                {{ "\"" ~ vitamin ~ "\"," }}
+                                {% endautoescape %}
+                                {% endfor %}]
                         }
                         var tagify = new Tagify(input, settings);
 
@@ -107,7 +119,11 @@
                             dropdown: {
                                 enabled: 0
                             },
-                            whitelist:["апельсин","яблоко","картофель","редис"]
+                            whitelist:[{% for ingredient in ingredients %}
+                                {% autoescape false%}
+                                {{ "\"" ~ ingredient ~ "\"," }}
+                                {% endautoescape %}
+                                {% endfor %}]
                         }
                         var tagify = new Tagify(input, settings);
 
