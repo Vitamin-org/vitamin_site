@@ -69,23 +69,17 @@ FROM recipe AS r
      */
     public function findAllByFilters(array $includeIngredients = [], array $includeVitamins = [], array $excludeIngredients = [], array $excludeVitamins = []): array
     {
-        $recipesIDS = [];
         $inclVitCount = count($includeVitamins);
         $inclIngCount = count($includeIngredients);
         $exclVitCount = count($excludeVitamins);
         $exclIngCount = count($excludeIngredients);
 
-        var_dump($inclIngCount); var_dump($inclVitCount); var_dump($exclIngCount); var_dump($exclVitCount);
         $conn = $this->getEntityManager()->getConnection();
-        $sql = '';
 
-        if ($inclIngCount == 0 && $inclVitCount == 0 && $exclIngCount == 0 && $exclVitCount == 0) {             // нет никаких данных, ничего не выведется
+        if ($inclIngCount == 0 && $inclVitCount == 0 && $exclIngCount == 0 && $exclVitCount == 0) {             // нет никаких данных, выведется всё
             $sql = 'SELECT r.id FROM recipe AS r;';
             $stmt = $conn->prepare($sql);
-            $stmt->executeQuery(['includeIngredients' => $this->getRightStringRepresentation($includeIngredients),
-                'includeVitamins' => $this->getRightStringRepresentation($includeVitamins),
-                'excludeIngredients' => $this->getRightStringRepresentation($excludeIngredients),
-                'excludeVitamins' => $this->getRightStringRepresentation($excludeVitamins)]);
+            $stmt->executeQuery();
         }
 
         else if ($inclIngCount != 0 && $inclVitCount == 0 && $exclIngCount == 0 && $exclVitCount == 0) {

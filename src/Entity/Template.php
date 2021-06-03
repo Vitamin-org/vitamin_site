@@ -22,14 +22,30 @@ class Template
     private $id;
 
     /**
-     * @ORM\Column(name="title", type="text", nullable=false, options={"comment"="title of the template"})
+     * @ORM\Column(name="title", type="string", length=255, nullable=false, options={"comment"="title of the template"})
      */
     private $title;
 
+
     /**
-     * @ORM\Column(name="filters", type="json", nullable=true, options={"comment"="filters that define this template, represented in JSON format"})
+     * @ORM\Column(type="json", nullable=true)
      */
-    private $filters = [];
+    private $include_ingredients = [];
+
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $include_vitamins = [];
+
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $exclude_ingredients = [];
+
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $exclude_vitamins = [];
 
     public function getId(): ?int
     {
@@ -48,14 +64,51 @@ class Template
         return $this;
     }
 
-    public function getFilters(): ?array
+
+    public function getIncludeIngredients(): ?array
     {
-        return $this->filters;
+        return $this->include_ingredients;
     }
 
-    public function setFilters(array $filters): self
+    public function setIncludeIngredients(?array $include_ingredients): self
     {
-        $this->filters = $filters;
+        $this->include_ingredients = $include_ingredients;
+
+        return $this;
+    }
+
+    public function getIncludeVitamins(): ?array
+    {
+        return $this->include_vitamins;
+    }
+
+    public function setIncludeVitamins(?array $include_vitamins): self
+    {
+        $this->include_vitamins = $include_vitamins;
+
+        return $this;
+    }
+
+    public function getExcludeIngredients(): ?array
+    {
+        return $this->exclude_ingredients;
+    }
+
+    public function setExcludeIngredients(?array $exclude_ingredients): self
+    {
+        $this->exclude_ingredients = $exclude_ingredients;
+
+        return $this;
+    }
+
+    public function getExcludeVitamins(): ?array
+    {
+        return $this->exclude_vitamins;
+    }
+
+    public function setExcludeVitamins(?array $exclude_vitamins): self
+    {
+        $this->exclude_vitamins = $exclude_vitamins;
 
         return $this;
     }

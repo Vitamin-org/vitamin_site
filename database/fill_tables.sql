@@ -88,3 +88,11 @@ INSERT INTO recipe_ingredient(recipe_id, ingredient_id, ingredient_amount_in_gra
 (10, 14, 120),
 (10, 4, 2),
 (10, 3, 0);
+
+
+INSERT INTO template(title, include_ingredients, include_vitamins, exclude_ingredients, exclude_vitamins) VALUES
+('dummy template', '["Соль"]', '["B6"]', '["Сахар"]', '["K"]'),
+('Бери-Бери', '[]', '["B1"]', '[]', '[]'),
+('Цинга', '[]', '["C"]', '[]', '[]'),
+('Рахит', '[]', '["D"]', '[]', '[]')
+;

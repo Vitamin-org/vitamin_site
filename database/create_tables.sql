@@ -41,10 +41,20 @@ COMMENT ON COLUMN recipe_ingredient.ingredient_amount_in_grams IS 'amount of ing
 CREATE TABLE IF NOT EXISTS template(
 	id BIGSERIAL PRIMARY KEY,
 	title varchar(255) UNIQUE NOT NULL,
-	filters JSON
+	include_ingredients JSON,
+    include_vitamins JSON,
+    exclude_ingredients JSON,
+    exclude_vitamins JSON
 );
 
 COMMENT ON TABLE template IS 'table containing information about templates that can be used to choose certain recipes containing certain vitamins';
 COMMENT ON COLUMN template.id IS 'unique id of template in the table';
 COMMENT ON COLUMN template.title IS 'title of the template';
-COMMENT ON COLUMN template.filters IS 'filters that define this template, represented in JSON format';
+COMMENT ON COLUMN template.include_ingredients IS 'array in json format of ingredients that must be included in query. format: ["Ингредиент1", "Ингредиент2"]';
+COMMENT ON COLUMN template.include_vitamins IS 'array in json format of vitamins that must be included in query.  format: ["B2", "A"]';
+COMMENT ON COLUMN template.exclude_ingredients IS 'array in json format of ingredients that must be excluded from query for recipes. same format as for include_ingredients field';
+COMMENT ON COLUMN template.exclude_vitamins IS 'array in json format of vitamins that must be excluded from query for recipes. same format as for include_vitamins field';
+
+
+
+
