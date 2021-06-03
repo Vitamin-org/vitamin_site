@@ -80,7 +80,7 @@ FROM recipe AS r
         $sql = '';
 
         if ($inclIngCount == 0 && $inclVitCount == 0 && $exclIngCount == 0 && $exclVitCount == 0) {             // нет никаких данных, ничего не выведется
-            $sql = $this->mainQuery . $this->where . $this->includeIngredientsQuery . $this->and . $this->includeVitaminsQuery . $this->and . $this->excludeIngredientsQuery . $this->and . $this->excludeVitaminsQuery . $this->endingOfQuery;
+            $sql = 'SELECT r.id FROM recipe AS r;';
             $stmt = $conn->prepare($sql);
             $stmt->executeQuery(['includeIngredients' => $this->getRightStringRepresentation($includeIngredients),
                 'includeVitamins' => $this->getRightStringRepresentation($includeVitamins),
