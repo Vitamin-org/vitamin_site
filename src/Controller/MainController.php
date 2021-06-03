@@ -10,7 +10,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
 {
-
     /**
      * @Route("/", name="homepage")
      */
@@ -20,7 +19,7 @@ class MainController extends AbstractController
                     ->getRepository(Ingredient::class)
                     ->findAll();
 
-         $vitamins = $this->getDoctrine()
+        $vitamins = $this->getDoctrine()
                     ->getRepository(Ingredient::class)
                     ->findAllVitamins();
 

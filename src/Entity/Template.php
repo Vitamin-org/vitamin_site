@@ -64,7 +64,6 @@ class Template
         return $this;
     }
 
-
     public function getIncludeIngredients(): ?array
     {
         return $this->include_ingredients;
