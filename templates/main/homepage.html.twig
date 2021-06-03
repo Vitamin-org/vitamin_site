@@ -10,7 +10,7 @@
 
                 </div>
                 <div class="btn-group btn-group-lg nav-buttons" style="width: 360px;" role="group" aria-label="Basic example">
-                    <button type="button"  class="btn active btn-primary" onclick="openSearch()" >
+                    <button type="button"  class="btn btn-primary" onclick="openSearch()" >
                         Поиск
                     </button>
                     <button type="button"  class="btn btn-primary"   onclick="openRecommend()">
@@ -140,17 +140,14 @@
             </div>
 
         </div>
-    </form>
+    </form >
 
         <div class="container-fluid" id= "recommend" >
             <nav class="navbar navbar-light" >
                 <div class="container-fluid">
-                    <form class="d-flex" >
+                    <form action="/template" method="get" class="d-flex" >
                         <input class="form-control me-2" input type="text" name="template" id="searchTemp" type="search" >
                         <input class="btn btn-primary btn-lg btn-search" type="submit" value="Поиск" class="button">
-{#                        <a  class="btn btn-primary btn-search" type="button"  href="#"  >#}
-{#                            Поиск#}
-{#                        </a>#}
                     </form>
                 </div>
 
@@ -162,12 +159,15 @@
                     dropdown: {
                         enabled: 0
                     },
-                    whitelist:["Авитаминоз А","Авитаминоз С","Авитаминоз В","Авитаминоз Е"]
+                    whitelist:[{% for template in templates %}
+                        {% autoescape false%}
+                        {{ "\"" ~ template.getTitle() ~ "\"," }}
+                        {% endautoescape %}
+                        {% endfor %}]
                 }
                 var tagify = new Tagify(input, settings);
             </script>
         </div>
-
     </div>
 
 

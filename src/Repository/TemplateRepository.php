@@ -19,6 +19,19 @@ class TemplateRepository extends ServiceEntityRepository
         parent::__construct($registry, Template::class);
     }
 
+    public function findOneByName($titleOfTemplate): ?Template
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'SELECT template.id FROM template WHERE template.title = :value;';
+        $stmt = $conn->prepare($sql);
+        $stmt->executeQuery(['value' => $titleOfTemplate]);
+
+        $idS = $stmt->fetchAllAssociative();
+
+        return $this->find($idS[0]);
+    }
+
     // /**
     //  * @return Template[] Returns an array of Template objects
     //  */

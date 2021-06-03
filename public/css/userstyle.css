@@ -27,6 +27,7 @@ header{
 
 .tagify-vit{
     background-color:#e5f4f9;
+    white-space: nowrap;
     border-radius: 3px;
     padding-right: 10px;
     padding-left: 10px;

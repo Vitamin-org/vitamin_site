@@ -87,6 +87,11 @@ FROM recipe AS r
             $stmt = $conn->prepare($sql);
             $stmt->executeQuery(['includeIngredients' => $this->getRightStringRepresentation($includeIngredients)]);
 
+        } else if($inclIngCount != 0 && $inclVitCount == 0 && $exclIngCount != 0 && $exclVitCount == 0) {
+            $sql = $this->mainQuery . $this->where . $this->includeIngredientsQuery . $this->and . $this->excludeIngredientsQuery . $this->endingOfQuery;
+            $stmt = $conn->prepare($sql);
+            $stmt->executeQuery(['includeIngredients' => $this->getRightStringRepresentation($includeIngredients),
+                'excludeIngredients' => $this->getRightStringRepresentation($excludeIngredients)]);
         } else if ($inclIngCount == 0 && $inclVitCount != 0 && $exclIngCount == 0 && $exclVitCount == 0) {
             $sql = $this->mainQuery . $this->where . $this->includeVitaminsQuery . $this->endingOfQuery;
             $stmt = $conn->prepare($sql);
