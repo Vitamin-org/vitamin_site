@@ -25,7 +25,7 @@ class Recipe
     private $id;
 
     /**
-     * @ORM\Column(name="title", type="text", nullable=false, options={"comment"="title of the recipe"})
+     * @ORM\Column(name="title", type="string", length=255, nullable=false, options={"comment"="title of the recipe"})
      */
     private $title;
 
