@@ -26,7 +26,6 @@ class Template
      */
     private $title;
 
-
     /**
      * @ORM\Column(type="json", nullable=true)
      */
