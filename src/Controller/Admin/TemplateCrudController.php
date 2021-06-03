@@ -17,13 +17,10 @@ class TemplateCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         yield TextField::new('title');
-<<<<<<< HEAD
         yield CollectionField::new('include_ingredients');
         yield CollectionField::new('include_vitamins');
         yield CollectionField::new('exclude_ingredients');
         yield CollectionField::new('exclude_vitamins');
-=======
         yield TextareaField::new('filters');
->>>>>>> main
     }
 }
