@@ -1,10 +1,10 @@
 CREATE TABLE  IF NOT EXISTS recipe(
 	id BIGSERIAL PRIMARY KEY,
-	title TEXT UNIQUE,
-	description TEXT
+	title varchar(255) UNIQUE NOT NULL,
+	description text
 );
 
-COMMENT ON TABLE recipe IS 'table containing information about recipeis';
+COMMENT ON TABLE recipe IS 'table containing information about recipes';
 COMMENT ON COLUMN recipe.id IS 'unique id of recipe in table';
 COMMENT ON COLUMN recipe.title IS 'title of the recipe';
 COMMENT ON COLUMN recipe.description IS 'some description about recipe: tutorial how to cook';
@@ -12,7 +12,7 @@ COMMENT ON COLUMN recipe.description IS 'some description about recipe: tutorial
 
 CREATE TABLE IF NOT EXISTS ingredient(
 	id BIGSERIAL PRIMARY KEY,
-	title TEXT UNIQUE, 
+	title varchar(255) UNIQUE NOT NULL,
 	vitamins JSON
 );
 
@@ -40,13 +40,21 @@ COMMENT ON COLUMN recipe_ingredient.ingredient_amount_in_grams IS 'amount of ing
 
 CREATE TABLE IF NOT EXISTS template(
 	id BIGSERIAL PRIMARY KEY,
-	title text UNIQUE,
-	filters JSON
+	title varchar(255) UNIQUE NOT NULL,
+	include_ingredients JSON,
+    include_vitamins JSON,
+    exclude_ingredients JSON,
+    exclude_vitamins JSON
 );
 
-
-
-COMMENT ON TABLE template IS 'table containing information about templates that can be used to choose certain recipeis containing certain vitamins';
+COMMENT ON TABLE template IS 'table containing information about templates that can be used to choose certain recipes containing certain vitamins';
 COMMENT ON COLUMN template.id IS 'unique id of template in the table';
 COMMENT ON COLUMN template.title IS 'title of the template';
-COMMENT ON COLUMN template.filters IS 'filters that define this template, represented in JSON format';
+COMMENT ON COLUMN template.include_ingredients IS 'array in json format of ingredients that must be included in query. format: ["Ингредиент1", "Ингредиент2"]';
+COMMENT ON COLUMN template.include_vitamins IS 'array in json format of vitamins that must be included in query.  format: ["B2", "A"]';
+COMMENT ON COLUMN template.exclude_ingredients IS 'array in json format of ingredients that must be excluded from query for recipes. same format as for include_ingredients field';
+COMMENT ON COLUMN template.exclude_vitamins IS 'array in json format of vitamins that must be excluded from query for recipes. same format as for include_vitamins field';
+
+
+
+

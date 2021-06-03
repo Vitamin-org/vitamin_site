@@ -19,6 +19,31 @@ class IngredientRepository extends ServiceEntityRepository
         parent::__construct($registry, Ingredient::class);
     }
 
+     /**
+      * @return array Returns an array of string of all vitamins in database
+      */
+    public function findAllVitamins()
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'SELECT DISTINCT json_object_keys(ingredient.vitamins) AS KEYS
+  FROM ingredient;';
+        $stmt = $conn->prepare($sql);
+        $stmt->executeQuery();
+
+        $vitamins = $stmt->fetchAllAssociative();
+
+        $actualVitamins = array();
+        foreach ($vitamins as $vitamin) {
+            array_push($actualVitamins, $vitamin["keys"]);
+        }
+
+        return $actualVitamins;
+    }
+
+
+
+
     // /**
     //  * @return Ingredient[] Returns an array of Ingredient objects
     //  */
